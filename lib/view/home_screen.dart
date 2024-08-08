@@ -7,19 +7,21 @@ import 'package:lottie/lottie.dart';
 import 'package:flutter/gestures.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
 
+  // Create instances for Firestore and Firebase Storage
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
+  final FirebaseStorage storage = FirebaseStorage.instance;
+
   Future<void> incrementDownloadCounter() async {
     try {
-      FirebaseFirestore firestore = FirebaseFirestore.instance;
       DocumentReference docRef =
           firestore.collection('counters').doc('downloads');
-
       await firestore.runTransaction((transaction) async {
         DocumentSnapshot snapshot = await transaction.get(docRef);
-
         if (!snapshot.exists) {
           transaction.set(docRef, {'count': 1});
         } else {
@@ -64,13 +66,13 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          // Positioned.fill(
-          //   child: Transform.scale(
-          //     scale: 1.1,
-          //     child:
-          //         Lottie.asset('assets/HomeGradient.json', fit: BoxFit.cover),
-          //   ),
-          // ),
+          Positioned.fill(
+            child: Transform.scale(
+              scale: 1.1,
+              child:
+                  Lottie.asset('assets/HomeGradient.json', fit: BoxFit.cover),
+            ),
+          ),
           Center(
             child: ScreenTypeLayout(
               mobile: buildContent(context, DeviceScreenType.mobile),
@@ -85,7 +87,6 @@ class HomeScreen extends StatelessWidget {
 
   Widget buildContent(BuildContext context, DeviceScreenType deviceType) {
     double titleFontSize = 40;
-    double subtitleFontSize = 35;
     double bodyFontSize = 16;
     double buttonWidth = 150;
     double buttonHeight = 50;
@@ -94,10 +95,7 @@ class HomeScreen extends StatelessWidget {
 
     if (deviceType == DeviceScreenType.mobile) {
       titleFontSize = 32;
-      subtitleFontSize = 28;
       bodyFontSize = 14;
-      buttonWidth = 150;
-      buttonHeight = 50;
       screenshotHeight = 300;
     } else if (deviceType == DeviceScreenType.tablet) {
       descriptionMaxWidth = 600;
@@ -109,8 +107,7 @@ class HomeScreen extends StatelessWidget {
 
     return Center(
       child: Container(
-        decoration:
-            const BoxDecoration(color: Color.fromARGB(123, 255, 255, 255)),
+        decoration: BoxDecoration(color: Color.fromARGB(131, 255, 255, 255)),
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -132,9 +129,7 @@ class HomeScreen extends StatelessWidget {
                   color: const Color.fromARGB(255, 255, 185, 7),
                 ),
               ),
-              const SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20),
               const Text(
                 "Your Meme Hub",
                 style: TextStyle(
@@ -276,7 +271,7 @@ class HomeScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Lottie.asset('assets/heart.json', height: 50),
+                  //  Lottie.asset('assets/heart.json', height: 50),
                   Text(
                     'Thanks for Visiting',
                     style: TextStyle(
@@ -285,7 +280,7 @@ class HomeScreen extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Lottie.asset('assets/heart.json', height: 50),
+                  // Lottie.asset('assets/heart.json', height: 50),
                 ],
               ),
               Text(
@@ -319,9 +314,9 @@ class HomeScreen extends StatelessWidget {
                               'https://www.linkedin.com/in/kunal-prajapat-487079263/');
                         },
                     ),
-                    WidgetSpan(
-                      child: Lottie.asset('assets/Kunal.json', height: 40),
-                    ),
+                    // WidgetSpan(
+                    //   child: Lottie.asset('assets/Kunal.json', height: 40),
+                    // ),
                   ],
                 ),
               ),
@@ -340,47 +335,37 @@ class HomeScreen extends StatelessWidget {
         showDialog(
           context: context,
           builder: (BuildContext context) {
+            PageController pageController =
+                PageController(initialPage: initialPage);
             return Dialog(
               backgroundColor: Colors.transparent,
-              child: StatefulBuilder(
-                builder: (BuildContext context, StateSetter setState) {
-                  PageController pageController =
-                      PageController(initialPage: initialPage);
-
-                  return Container(
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      color: Colors.transparent,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Stack(
+              child: Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: Colors.transparent,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Stack(
+                  children: [
+                    PageView(
+                      controller: pageController,
                       children: [
-                        PageView(
-                          controller: pageController,
-                          onPageChanged: (pageIndex) {
-                            setState(() {
-                              initialPage = pageIndex;
-                            });
-                          },
-                          children: [
-                            _buildImageWithBorder(
-                                'https://firebasestorage.googleapis.com/v0/b/unsung-memer-ed337.appspot.com/o/Screenshots%2FSS1.jpg?alt=media&token=9c08b85f-4107-40aa-b767-8d8377288c0b'),
-                            _buildImageWithBorder(
-                                'https://firebasestorage.googleapis.com/v0/b/unsung-memer-ed337.appspot.com/o/Screenshots%2FSS2.jpg?alt=media&token=4641d66d-a6e7-4d54-9a29-47d09b5a72f5'),
-                            _buildImageWithBorder(
-                                'https://firebasestorage.googleapis.com/v0/b/unsung-memer-ed337.appspot.com/o/Screenshots%2FSS3.jpg?alt=media&token=a79fbd2b-ac3e-4342-a460-9042833e24ab'),
-                            _buildImageWithBorder(
-                                'https://firebasestorage.googleapis.com/v0/b/unsung-memer-ed337.appspot.com/o/Screenshots%2FSS4.jpg?alt=media&token=3b0fe42e-7638-4208-8aa6-579b372a76eb'),
-                            _buildImageWithBorder(
-                                'https://firebasestorage.googleapis.com/v0/b/unsung-memer-ed337.appspot.com/o/Screenshots%2FSS5.jpg?alt=media&token=6476bacb-97cd-4b51-b8b2-9c2ab2aa0a01'),
-                          ],
-                        ),
-                        _buildNavigationArrows(
-                            context, pageController, initialPage),
+                        _buildImageWithBorder(
+                            'https://firebasestorage.googleapis.com/v0/b/unsung-memer-ed337.appspot.com/o/Screenshots%2FSS1.jpg?alt=media&token=9c08b85f-4107-40aa-b767-8d8377288c0b'),
+                        _buildImageWithBorder(
+                            'https://firebasestorage.googleapis.com/v0/b/unsung-memer-ed337.appspot.com/o/Screenshots%2FSS2.jpg?alt=media&token=4641d66d-a6e7-4d54-9a29-47d09b5a72f5'),
+                        _buildImageWithBorder(
+                            'https://firebasestorage.googleapis.com/v0/b/unsung-memer-ed337.appspot.com/o/Screenshots%2FSS3.jpg?alt=media&token=a79fbd2b-ac3e-4342-a460-9042833e24ab'),
+                        _buildImageWithBorder(
+                            'https://firebasestorage.googleapis.com/v0/b/unsung-memer-ed337.appspot.com/o/Screenshots%2FSS4.jpg?alt=media&token=3b0fe42e-7638-4208-8aa6-579b372a76eb'),
+                        _buildImageWithBorder(
+                            'https://firebasestorage.googleapis.com/v0/b/unsung-memer-ed337.appspot.com/o/Screenshots%2FSS5.jpg?alt=media&token=6476bacb-97cd-4b51-b8b2-9c2ab2aa0a01'),
                       ],
                     ),
-                  );
-                },
+                    _buildNavigationArrows(
+                        context, pageController, initialPage),
+                  ],
+                ),
               ),
             );
           },
@@ -449,9 +434,6 @@ class HomeScreen extends StatelessWidget {
   Widget _buildImageWithBorder(String imagePath) {
     return Container(
       margin: const EdgeInsets.all(10),
-      // decoration: BoxDecoration(
-      //   borderRadius: BorderRadius.circular(10),
-      // ),
       child: CachedNetworkImage(
         imageUrl: imagePath,
         placeholder: (context, url) => const CircularProgressIndicator(),

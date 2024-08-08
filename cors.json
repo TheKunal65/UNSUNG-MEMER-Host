@@ -1,0 +1,7 @@
+[
+    {
+      "origin": ["https://unsung-memer-ed337.web.app/"],
+      "method": ["GET"],
+      "maxAgeSeconds": 3600
+    }
+  ]
