@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1086104036676",
+    "project_id": "unsung-memer-ed337",
+    "storage_bucket": "unsung-memer-ed337.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1086104036676:android:1d8191b2fa86c53f756311",
+        "android_client_info": {
+          "package_name": "com.example.unsungmemer"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_VCeWWePG6WrnX6pbd2vl8xgVwQxBMPA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
