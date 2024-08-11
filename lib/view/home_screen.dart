@@ -107,6 +107,8 @@ class HomeScreen extends StatelessWidget {
 
     return Center(
       child: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(color: Color.fromARGB(131, 255, 255, 255)),
         child: SingleChildScrollView(
           child: Column(
@@ -236,31 +238,31 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       _buildScreenshot(
                           context,
-                          'https://firebasestorage.googleapis.com/v0/b/unsung-memer-ed337.appspot.com/o/Screenshots%2FSS1.jpg?alt=media&token=9c08b85f-4107-40aa-b767-8d8377288c0b',
+                          'https://res.cloudinary.com/dtrm5bpni/image/upload/fl_preserve_transparency/v1723129682/Screenshots/yi5fvgzmra4szn1dtlx7.jpg?_s=public-apps',
                           screenshotHeight,
                           0),
                       const SizedBox(width: 10),
                       _buildScreenshot(
                           context,
-                          'https://firebasestorage.googleapis.com/v0/b/unsung-memer-ed337.appspot.com/o/Screenshots%2FSS2.jpg?alt=media&token=4641d66d-a6e7-4d54-9a29-47d09b5a72f5',
+                          'https://res.cloudinary.com/dtrm5bpni/image/upload/fl_preserve_transparency/v1723129683/Screenshots/brvvrrvfrq03mdxp9qo6.jpg?_s=public-apps',
                           screenshotHeight,
                           1),
                       const SizedBox(width: 10),
                       _buildScreenshot(
                           context,
-                          'https://firebasestorage.googleapis.com/v0/b/unsung-memer-ed337.appspot.com/o/Screenshots%2FSS3.jpg?alt=media&token=a79fbd2b-ac3e-4342-a460-9042833e24ab',
+                          'https://res.cloudinary.com/dtrm5bpni/image/upload/fl_preserve_transparency/v1723129682/Screenshots/vqdomxbz3r3paasevosk.jpg?_s=public-apps',
                           screenshotHeight,
                           2),
                       const SizedBox(width: 10),
                       _buildScreenshot(
                           context,
-                          'https://firebasestorage.googleapis.com/v0/b/unsung-memer-ed337.appspot.com/o/Screenshots%2FSS4.jpg?alt=media&token=3b0fe42e-7638-4208-8aa6-579b372a76eb',
+                          'https://res.cloudinary.com/dtrm5bpni/image/upload/fl_preserve_transparency/v1723129682/Screenshots/owit3e5cknfifmoje7ul.jpg?_s=public-apps',
                           screenshotHeight,
                           3),
                       const SizedBox(width: 10),
                       _buildScreenshot(
                           context,
-                          'https://firebasestorage.googleapis.com/v0/b/unsung-memer-ed337.appspot.com/o/Screenshots%2FSS5.jpg?alt=media&token=6476bacb-97cd-4b51-b8b2-9c2ab2aa0a01',
+                          'https://res.cloudinary.com/dtrm5bpni/image/upload/fl_preserve_transparency/v1723129682/Screenshots/rf1boepblagkywdf3stl.jpg?_s=public-apps',
                           screenshotHeight,
                           4),
                     ],
@@ -271,7 +273,7 @@ class HomeScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  //  Lottie.asset('assets/heart.json', height: 50),
+                  Lottie.asset('assets/heart.json', height: 50),
                   Text(
                     'Thanks for Visiting',
                     style: TextStyle(
@@ -280,7 +282,7 @@ class HomeScreen extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  // Lottie.asset('assets/heart.json', height: 50),
+                  Lottie.asset('assets/heart.json', height: 50),
                 ],
               ),
               Text(
@@ -314,9 +316,9 @@ class HomeScreen extends StatelessWidget {
                               'https://www.linkedin.com/in/kunal-prajapat-487079263/');
                         },
                     ),
-                    // WidgetSpan(
-                    //   child: Lottie.asset('assets/Kunal.json', height: 40),
-                    // ),
+                    WidgetSpan(
+                      child: Lottie.asset('assets/Kunal.json', height: 40),
+                    ),
                   ],
                 ),
               ),
@@ -351,15 +353,15 @@ class HomeScreen extends StatelessWidget {
                       controller: pageController,
                       children: [
                         _buildImageWithBorder(
-                            'https://firebasestorage.googleapis.com/v0/b/unsung-memer-ed337.appspot.com/o/Screenshots%2FSS1.jpg?alt=media&token=9c08b85f-4107-40aa-b767-8d8377288c0b'),
+                            'https://res.cloudinary.com/dtrm5bpni/image/upload/fl_preserve_transparency/v1723129682/Screenshots/yi5fvgzmra4szn1dtlx7.jpg?_s=public-apps'),
                         _buildImageWithBorder(
-                            'https://firebasestorage.googleapis.com/v0/b/unsung-memer-ed337.appspot.com/o/Screenshots%2FSS2.jpg?alt=media&token=4641d66d-a6e7-4d54-9a29-47d09b5a72f5'),
+                            'https://res.cloudinary.com/dtrm5bpni/image/upload/fl_preserve_transparency/v1723129683/Screenshots/brvvrrvfrq03mdxp9qo6.jpg?_s=public-apps'),
                         _buildImageWithBorder(
-                            'https://firebasestorage.googleapis.com/v0/b/unsung-memer-ed337.appspot.com/o/Screenshots%2FSS3.jpg?alt=media&token=a79fbd2b-ac3e-4342-a460-9042833e24ab'),
+                            'https://res.cloudinary.com/dtrm5bpni/image/upload/fl_preserve_transparency/v1723129682/Screenshots/vqdomxbz3r3paasevosk.jpg?_s=public-apps'),
                         _buildImageWithBorder(
-                            'https://firebasestorage.googleapis.com/v0/b/unsung-memer-ed337.appspot.com/o/Screenshots%2FSS4.jpg?alt=media&token=3b0fe42e-7638-4208-8aa6-579b372a76eb'),
+                            'https://res.cloudinary.com/dtrm5bpni/image/upload/fl_preserve_transparency/v1723129682/Screenshots/owit3e5cknfifmoje7ul.jpg?_s=public-apps'),
                         _buildImageWithBorder(
-                            'https://firebasestorage.googleapis.com/v0/b/unsung-memer-ed337.appspot.com/o/Screenshots%2FSS5.jpg?alt=media&token=6476bacb-97cd-4b51-b8b2-9c2ab2aa0a01'),
+                            'https://res.cloudinary.com/dtrm5bpni/image/upload/fl_preserve_transparency/v1723129682/Screenshots/rf1boepblagkywdf3stl.jpg?_s=public-apps'),
                       ],
                     ),
                     _buildNavigationArrows(
